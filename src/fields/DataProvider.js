@@ -41,7 +41,12 @@ class DataProvider extends Component {
     const this_el = this
     await axios({
       method: 'post',
-      url: this.props.api.address + '/clients/index?page=' + pageNum,
+      url:
+        this.props.api.address +
+        '/' +
+        this.props.modelName +
+        '/index?page=' +
+        pageNum,
       data: stringify({}),
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -53,14 +58,18 @@ class DataProvider extends Component {
           const event = response.data
 
           this_el.setState({ models: event.data })
-
+          const name = this.props.modelName.split('-')
+          let fullName = ''
+          name.map(function (el) {
+            fullName += el.charAt(0).toUpperCase() + el.slice(1) + ' '
+          })
           const bread = [
             {
               name: 'Home',
               link: '/'
             },
             {
-              name: 'Clients',
+              name: fullName,
               link: ''
             }
           ]
@@ -82,7 +91,12 @@ class DataProvider extends Component {
     const this_el = this
     await axios({
       method: 'post',
-      url: this.props.api.address + '/clients/delete?id=' + id,
+      url:
+        this.props.api.address +
+        '/' +
+        this.props.modelName +
+        '/delete?id=' +
+        id,
       data: stringify({}),
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -158,13 +172,13 @@ class DataProvider extends Component {
           <td key={'control-' + value[1].id} className='data-provider-control'>
             <Link
               className='model-control-icon'
-              to={'/clients/view/' + value[1].id}
+              to={'/' + this.props.modelName + '/view/' + value[1].id}
             >
               <FontAwesomeIcon icon={faEye} />
             </Link>
             <Link
               className='model-control-icon'
-              to={'/clients/update/' + value[1].id}
+              to={'/' + this.props.modelName + '/update/' + value[1].id}
             >
               <FontAwesomeIcon icon={faEdit} />
             </Link>
