@@ -58,7 +58,7 @@ class DataProvider extends Component {
           const event = response.data
 
           this_el.setState({ models: event.data })
-          const name = this.props.modelName.split('-')
+          const name = this_el.props.modelName.split('-')
           let fullName = ''
           name.map(function (el) {
             fullName += el.charAt(0).toUpperCase() + el.slice(1) + ' '
@@ -142,6 +142,13 @@ class DataProvider extends Component {
       const head = []
       const rows = []
       head.push(<th key='hash'>#</th>)
+      if (models.length === 0) {
+        return (
+          <h3>
+            <small className='text-muted'>Create your first item</small>
+          </h3>
+        )
+      }
       Object.entries(models[0]).forEach(function (val, key) {
         if (this_el.props.hasOwnProperty('fields')) {
           if (this_el.props.fields.includes(val[0])) {
@@ -172,13 +179,13 @@ class DataProvider extends Component {
           <td key={'control-' + value[1].id} className='data-provider-control'>
             <Link
               className='model-control-icon'
-              to={'/' + this.props.modelName + '/view/' + value[1].id}
+              to={'/' + this_el.props.modelName + '/view/' + value[1].id}
             >
               <FontAwesomeIcon icon={faEye} />
             </Link>
             <Link
               className='model-control-icon'
-              to={'/' + this.props.modelName + '/update/' + value[1].id}
+              to={'/' + this_el.props.modelName + '/update/' + value[1].id}
             >
               <FontAwesomeIcon icon={faEdit} />
             </Link>
