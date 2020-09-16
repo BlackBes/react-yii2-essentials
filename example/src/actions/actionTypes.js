@@ -1,0 +1,3 @@
+export const SET_AUTH_TOKENS = "SET_AUTH_TOKENS";
+export const SET_BREADCRUMBS = "SET_BREADCRUMBS";
+export const SET_USER_NAME = "SET_USER_NAME";

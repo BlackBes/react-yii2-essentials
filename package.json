@@ -1,6 +1,6 @@
 {
   "name": "react-yii2-essentials",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React components, that support working with Yii2.",
   "author": "BlackBes",
   "license": "MIT",
@@ -24,7 +24,20 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "qs-stringify": "^1.2.1",
+    "react-bootstrap4-modal": "^1.7.5",
+    "react-content-loader": "^5.1.1",
+    "prop-types": "^15.7.2",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "react-loader-spinner": "^3.1.14",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
@@ -45,7 +58,20 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "qs-stringify": "^1.2.1",
+    "react-bootstrap4-modal": "^1.7.5",
+    "react-content-loader": "^5.1.1",
+    "prop-types": "^15.7.2",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "react-loader-spinner": "^3.1.14",
+    "react-router-dom": "^5.2.0"
   },
   "files": [
     "dist"
