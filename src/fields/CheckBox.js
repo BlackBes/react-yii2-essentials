@@ -3,95 +3,73 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import stringify from 'qs-stringify'
+import { validate, prepareLabel } from '../libs/yii-validation'
 
 class CheckBox extends Component {
   static propTypes = {
     /** Name of field in model. */
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     /** Name of a model. */
     model: PropTypes.string,
     /** Label for input. If it empty or bool:false, using a field name. */
     label: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     /** Add more classes to field container. */
     class: PropTypes.string,
-    /** Placeholder for input. */
-    placeholder: PropTypes.string,
     /** object Key and value */
     options: PropTypes.object,
-    /** Value of field. */
-    value: PropTypes.bool,
+    /** Values of fields. */
+    values: PropTypes.objectOf(PropTypes.bool),
     /** Key of field. */
     key: PropTypes.any
   }
 
   constructor(props) {
     super(props)
-
+    let values = {}
+    Object.entries(this.props.options).map((data) => {
+      if (!values.hasOwnProperty(data[0])) {
+        if (this.props.values.hasOwnProperty(data[0])) {
+          values[data[0]] = this.props.values[data[0]]
+        } else {
+          values[data[0]] = false
+        }
+      }
+    });
     this.state = {
-      helpBlock: ''
+      helpBlock: '',
+      validation: '',
+      values: values
     }
-    if (this.props.label === false || this.props.label === '') {
-      let temp = this.props.name
-      temp = temp.replace(/([-_][a-z])/gi, ($1) => {
-        return $1.toUpperCase().replace('-', ' ').replace('_', ' ')
-      })
-      temp = temp.charAt(0).toUpperCase() + temp.slice(1)
-      this.labelName = temp
-    } else {
-      this.labelName = false
-    }
+    this.labelName = prepareLabel(this.props.label, this.props.name)
     this.editApi = this.editApi.bind(this)
   }
 
-  editApi = async (event) => {
+  editApi = async (event, checkboxId) => {
     const this_el = this
     // this.setState({value: event.target.value});
-    this.props.onChange(event)
-    // console.log(event.target.value);
-
-    await axios({
-      method: 'post',
-      url: this_el.props.api.address + '/validate-model-input',
-      data: stringify({
-        model: this_el.props.model,
-        name: this_el.props.name,
-        value: event.target.value
-      }),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        Authorization: 'Bearer ' + this_el.props.api.authToken
+    let values = {}
+    Object.entries(this.state.values).map((data) => {
+      if (data[0] === checkboxId) {
+        values[data[0]] = event.target.checked;
+      } else {
+        values[data[0]] = data[1];
       }
     })
-      .then(function (response) {
-        if (response.data !== '' && response.data.constructor === Object) {
-          const event = response.data
-
-          if (!('error' in event)) {
-            this_el.setState({ helpBlock: '' })
-            this_el.setState({ validation: true })
-          } else {
-            this_el.setState({ helpBlock: event.error })
-            this_el.setState({ validation: false })
-          }
-        } else {
-          console.log('Error while fetching events data!')
-        }
-      })
-      .catch(function (error) {
-        console.log(error.message)
-      })
+    console.log(values);
+    this.props.onChange(values)
+    this.setState({values: values});
   }
 
   boxItem() {
     const array = []
-    for (var key in this.props.options) {
+    Object.entries(this.props.options).map((data) => {
       array.push(
         <div
-          key={'divCheckbox-' + key}
+          key={'divCheckbox-' + data[0]}
           className='form-check form-check-inline'
         >
           <input
-            id={this.props.model + '-' + this.props.name + ' checkbox-' + key}
+            id={this.props.model + '-' + this.props.name + ' checkbox-' + data[0]}
             className={
               'form-check-input ' +
               (this.state.validation !== ''
@@ -102,23 +80,23 @@ class CheckBox extends Component {
             }
             type='checkbox'
             name={this.props.name}
-            key={'checkbox-' + key}
-            value={this.props.value}
-            onChange={this.editApi}
+            key={'checkbox-' + data[0]}
+            checked={this.state.values[data[0]]}
+            onChange={(event) => this.editApi(event, data[0])}
           />
           <label
-            key={'labelForCheckbox-' + key}
+            key={'labelForCheckbox-' + data[0]}
             className='form-check-label'
             htmlFor={
-              this.props.model + '-' + this.props.name + ' checkbox-' + key
+              this.props.model + '-' + this.props.name + ' checkbox-' + data[0]
             }
           >
-            {key}
+            {data[1]}
           </label>
         </div>
       )
-    }
-    return array
+    })
+    return array;
   }
 
   render() {
@@ -138,7 +116,7 @@ class CheckBox extends Component {
             className='control-label'
             htmlFor={this.props.model + '-' + this.props.name}
           >
-            {this.labelName ? this.labelName : this.props.label}
+            {this.labelName}
           </label>
         </div>
         {this.boxItem()}
@@ -146,8 +124,8 @@ class CheckBox extends Component {
           className={
             this.state.validation !== ''
               ? this.state.validation === true
-                ? 'valid-feedback'
-                : 'invalid-feedback'
+              ? 'valid-feedback'
+              : 'invalid-feedback'
               : ''
           }
         >

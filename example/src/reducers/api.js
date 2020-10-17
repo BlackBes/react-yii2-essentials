@@ -10,7 +10,7 @@ if(!IS_DEV) {
 }
 
 const initialState = {
-    authToken: '',
+    authToken: '2cxQpMzXwAQ9lP4xAp_G8afOYBy5Ogjq',
     userName: '',
     address:  startAddress+cleanAddress+'/api',
     cleanAddress: startAddress+cleanAddress,

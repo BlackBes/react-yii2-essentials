@@ -3,11 +3,12 @@ import axios from 'axios'
 import stringify from 'qs-stringify'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import {validate, prepareLabel} from '../libs/yii-validation'
 
 class TextArea extends Component {
   static propTypes = {
     /** Name of field in model. */
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     /** Name of a model. */
     model: PropTypes.string,
     /** Label for input. If it empty or bool:false, using a field name. */
@@ -19,7 +20,11 @@ class TextArea extends Component {
     /** Function, that handle change event. */
     onChange: PropTypes.func,
     /** Required. */
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    /** Help block text */
+    helpBlock: PropTypes.string,
+    /** Help block text */
+    validated: PropTypes.any,
   }
 
   constructor(props) {
@@ -29,16 +34,7 @@ class TextArea extends Component {
       helpBlock: '',
       validation: ''
     }
-    if (this.props.label === false || this.props.label === '') {
-      let temp = this.props.name
-      temp = temp.replace(/([-_][a-z])/gi, ($1) => {
-        return $1.toUpperCase().replace('-', ' ').replace('_', ' ')
-      })
-      temp = temp.charAt(0).toUpperCase() + temp.slice(1)
-      this.labelName = temp
-    } else {
-      this.labelName = false
-    }
+    this.labelName = prepareLabel(this.props.label, this.props.name);
     this.editApi = this.editApi.bind(this)
   }
 
@@ -48,40 +44,25 @@ class TextArea extends Component {
     this.props.onChange(event)
     // console.log(event.target.value);
 
-    await axios({
-      method: 'post',
-      url: this_el.props.api.address + '/validate-model-input',
-      data: stringify({
-        model: this_el.props.model,
-        name: this_el.props.name,
-        value: event.target.value
-      }),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        Authorization: 'Bearer ' + this_el.props.api.authToken
-      }
-    })
-      .then(function (response) {
-        if (response.data !== '' && response.data.constructor === Object) {
-          const event = response.data
-
-          if (!('error' in event)) {
-            this_el.setState({ helpBlock: '' })
-            this_el.setState({ validation: true })
-          } else {
-            this_el.setState({ helpBlock: event.error })
-            this_el.setState({ validation: false })
-          }
-        } else {
-          console.log('Error while fetching events data!')
-        }
-      })
-      .catch(function (error) {
-        console.log(error.message)
-      })
+    if(this_el.props.model !== undefined && this_el.props.model !== '') {
+      validate(this_el.props.model,
+        this_el.props.name,
+        event.target.value,
+        this_el.props.api.address,
+        this_el.props.api.authToken,
+        function() {
+          this_el.setState({ helpBlock: '' })
+          this_el.setState({ validation: true })
+        },
+        function(err) {
+          this_el.setState({ helpBlock: err })
+          this_el.setState({ validation: false })
+        });
+    }
   }
 
   render() {
+    let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
     return (
       <div
         className={
@@ -97,14 +78,14 @@ class TextArea extends Component {
           className='control-label'
           htmlFor={this.props.model + '-' + this.props.name}
         >
-          {this.labelName ? this.labelName : this.props.label}
+          {this.labelName}
         </label>
         <textarea
           id={this.props.model + '-' + this.props.name}
           className={
             'form-control ' +
-            (this.state.validation !== ''
-              ? this.state.validation === true
+            (validated !== ''
+              ? validated === true
                 ? 'is-valid'
                 : 'is-invalid'
               : '')
@@ -118,14 +99,14 @@ class TextArea extends Component {
         />
         <div
           className={
-            this.state.validation !== ''
-              ? this.state.validation === true
+            validated !== ''
+              ? validated === true
                 ? 'valid-feedback'
                 : 'invalid-feedback'
               : ''
           }
         >
-          {this.state.helpBlock}
+          {(this.props.validated !== undefined) ? this.props.helpBlock : this.state.helpBlock}
         </div>
       </div>
     )
