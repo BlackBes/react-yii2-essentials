@@ -15,7 +15,6 @@ const App = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('Update outer validation');
       setTextOutValidation(false);
       setTextOutHelpBlock('YAY, this is outer validation, bitch!');
     }, 5000)

@@ -11,7 +11,7 @@ import DropDownList from './fields/DropDownList'
 import InputField from './fields/InputField'
 import RadioButton from './fields/RadioButton'
 import TextArea from './fields/TextArea'
-
+import {validate, prepareLabel} from './libs/yii-validation'
 export {
   TableLoader,
   IndexDataLoader,
@@ -25,5 +25,7 @@ export {
   InputField,
   RadioButton,
   TextArea,
-  DataProvider
+  DataProvider,
+  validate,
+  prepareLabel
 }
