@@ -90,7 +90,7 @@ class DropDownList extends Component {
                 name={this.props.name}
                 onChange={this.editApi}
                 required={this.props.required}>
-          <option value="" defaultValue={true}>{(this.props.defaultValueText !== undefined) ? this.props.defaultValueText : ''}</option>
+          <option value="" defaultValue={true}>{(this.props.defaultValueText !== undefined) ? this.props.defaultValueText : 'Select data from list'}</option>
           {(this.listItem())}
         </select>
         <div
