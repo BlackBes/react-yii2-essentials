@@ -63,17 +63,17 @@ class DataProvider extends Component {
           name.map(function (el) {
             fullName += el.charAt(0).toUpperCase() + el.slice(1) + ' '
           })
-          const bread = [
-            {
-              name: 'Home',
-              link: '/'
-            },
-            {
-              name: fullName,
-              link: ''
-            }
-          ]
-          this_el.props.setBreadcrumbs(bread)
+          // const bread = [
+          //   {
+          //     name: 'Home',
+          //     link: '/'
+          //   },
+          //   {
+          //     name: fullName,
+          //     link: ''
+          //   }
+          // ]
+          // this_el.props.setBreadcrumbs(bread)
 
           this_el.setState({ isDataLoaded: true })
         } else {
