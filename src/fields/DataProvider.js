@@ -224,7 +224,7 @@ class DataProvider extends Component {
       })
 
       return (
-        <div className='table-responsive'>
+        <div className=''>
           <Modal visible={this.state.modal} onClickBackdrop={this.closeModal}>
             <div className='modal-header'>
               <h5 className='modal-title'>Deleting</h5>

@@ -3,6 +3,7 @@ import { InputField, TextArea, DropDownList, CheckBox, RadioButton, DataProvider
 import store from './store'
 import { Provider } from 'react-redux'
 import 'react-yii2-essentials/src/styles.module.css'
+import 'react-yii2-essentials/src/App.css'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const App = () => {

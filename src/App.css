@@ -104,3 +104,47 @@ html, body, #root, .layout-wrap {
   height: 40vmin;
   pointer-events: none;
 }
+
+.main-block tbody > tr > td {
+  word-break: break-all;
+}
+
+@media only screen and (max-width: 930px) {
+  .table {
+    display: flex;
+    flex-direction: column;
+  }
+  .table > thead {
+    display: flex;
+    flex-direction: column;
+  }
+  .table > thead > tr {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .table > thead > tr > th {
+    width: 100%;
+  }
+  .action-column {
+    display: none;
+  }
+  .table > tbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .table > tbody > tr {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .table > tbody > tr > td {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
