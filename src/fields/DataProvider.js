@@ -12,6 +12,7 @@ import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-bootstrap4-modal'
 import Pagination from '../navigation/pagination'
 import TableLoader from '../loaders/TableLoader'
+import {createLabel} from '../libs/yii-validation'
 
 class DataProvider extends Component {
   constructor(props) {
@@ -53,14 +54,14 @@ class DataProvider extends Component {
         Authorization: 'Bearer ' + this.props.api.authToken
       }
     })
-      .then(function (response) {
+      .then(function(response) {
         if (response.data !== '' && response.data.constructor === Object) {
           const event = response.data
 
           this_el.setState({ models: event.data })
           const name = this_el.props.modelName.split('-')
           let fullName = ''
-          name.map(function (el) {
+          name.map(function(el) {
             fullName += el.charAt(0).toUpperCase() + el.slice(1) + ' '
           })
           // const bread = [
@@ -80,7 +81,7 @@ class DataProvider extends Component {
           console.log('Error while fetching events data!')
         }
       })
-      .catch(function (error) {
+      .catch(function(error) {
         this_el.setState({ hasError: true })
         console.log(error.message)
       })
@@ -103,7 +104,7 @@ class DataProvider extends Component {
         Authorization: 'Bearer ' + this.props.api.authToken
       }
     })
-      .then(function (response) {
+      .then(function(response) {
         if (response.data !== '' && response.data.constructor === Object) {
           // let event = response.data;
           this_el.fetchData(this_el.state.page)
@@ -114,7 +115,7 @@ class DataProvider extends Component {
           console.log('Error while fetching events data!')
         }
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error.message)
       })
   }
@@ -149,23 +150,28 @@ class DataProvider extends Component {
           </h3>
         )
       }
-      Object.entries(models[0]).forEach(function (val, key) {
+      Object.entries(models[0]).forEach(function(val, key) {
         if (this_el.props.hasOwnProperty('fields')) {
           if (this_el.props.fields.includes(val[0])) {
-            head.push(<th key={val[0]}>{val[0]}</th>)
+            let label = createLabel(val[0]);
+            if (this_el.props.labels.hasOwnProperty(val[0])) {
+              label = this_el.props.labels[val[0]];
+            }
+            head.push(<th key={val[0]}>{label}</th>)
           }
         } else {
-          head.push(<th key={val[0]}>{val[0]}</th>)
+          let label = createLabel(val[0])
+          head.push(<th key={val[0]}>{label}</th>)
         }
       })
       head.push(
         <th key='free' className='action-column data-provider-control' />
       )
 
-      Object.entries(models).forEach(function (value, key) {
+      Object.entries(models).forEach(function(value, key) {
         const row = []
         row.push(<td key={'num-' + value[1].id}>{value[0]}</td>)
-        Object.entries(value[1]).forEach(function (val, key) {
+        Object.entries(value[1]).forEach(function(val, key) {
           if (this_el.props.hasOwnProperty('fields')) {
             if (this_el.props.fields.includes(val[0])) {
               row.push(<td key={val[0] + '-' + value[1].id}>{val[1]}</td>)
@@ -229,7 +235,7 @@ class DataProvider extends Component {
 
           <table className='table table-striped table-bordered table-hover'>
             <thead>
-              <tr>{head}</tr>
+            <tr>{head}</tr>
             </thead>
             <tbody>{rows}</tbody>
           </table>

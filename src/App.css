@@ -43,6 +43,10 @@ html, body, #root, .layout-wrap {
   margin-top: 20px;
 }
 
+.table > tbody > tr > td {
+  word-break: break-all;
+}
+
 .data-provider-control {
   width: calc(69px + 1.5rem);
   vertical-align: center;

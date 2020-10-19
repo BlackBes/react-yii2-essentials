@@ -65,4 +65,18 @@ function prepareLabel(label, name) {
   }
 }
 
-export {validate, prepareLabel}
+/**
+ * Create label from name.
+ * @param name
+ * @returns {string|boolean}
+ */
+function createLabel(name) {
+    let temp = name;
+    temp = temp.replace(/([-_][a-z])/gi, ($1) => {
+      return $1.toUpperCase().replace('-', ' ').replace('_', ' ')
+    })
+    temp = temp.charAt(0).toUpperCase() + temp.slice(1)
+    return temp;
+}
+
+export {validate, prepareLabel, createLabel}

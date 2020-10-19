@@ -56,7 +56,7 @@ class DropDownList extends Component {
     const this_el = this
     //this.setState({value: event.target.value});
     this.props.onChange(event)
-    //console.log(event.target.value)
+    console.log(event.target.value)
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
@@ -75,7 +75,6 @@ class DropDownList extends Component {
     }
   }
 
-
   render() {
     let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
     return (
@@ -85,7 +84,7 @@ class DropDownList extends Component {
           {this.labelName}
         </label>
         <select id={this.props.model + '-' + this.props.name}
-                value={this.state.value}
+                value={this.props.value}
                 className={'custom-select form-control ' + (validated !== '' ? (validated === true) ? 'is-valid' : 'is-invalid' : '')}
                 name={this.props.name}
                 onChange={this.editApi}
