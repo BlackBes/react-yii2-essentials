@@ -25,8 +25,10 @@ class DropDownList extends Component {
     required: PropTypes.bool,
     /** Help block text */
     helpBlock: PropTypes.string,
-    /** Help block text */
+    /** Validation value. Can be empty string or bool */
     validated: PropTypes.any,
+    /** Default value text */
+    defaultValueText: PropTypes.string
   }
 
   constructor(props) {
@@ -54,7 +56,7 @@ class DropDownList extends Component {
     const this_el = this
     //this.setState({value: event.target.value});
     this.props.onChange(event)
-    console.log(event.target.value)
+    //console.log(event.target.value)
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
@@ -88,7 +90,7 @@ class DropDownList extends Component {
                 name={this.props.name}
                 onChange={this.editApi}
                 required={this.props.required}>
-          <option value="" defaultValue={true}>-</option>
+          <option value="" defaultValue={true}>{(this.props.defaultValueText !== undefined) ? this.props.defaultValueText : ''}</option>
           {(this.listItem())}
         </select>
         <div
