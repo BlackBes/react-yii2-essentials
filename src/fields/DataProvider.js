@@ -142,10 +142,14 @@ class DataProvider extends Component {
         if (this_el.props.hasOwnProperty('fields')) {
           if (this_el.props.fields.includes(val[0])) {
             let label = createLabel(val[0]);
-            if (this_el.props.labels.hasOwnProperty(val[0])) {
-              label = this_el.props.labels[val[0]];
+            if (this_el.props.hasOwnProperty('labels')) {
+              if (this_el.props.labels.hasOwnProperty(val[0])) {
+                label = this_el.props.labels[val[0]];
+              }
+              head.push(<th key={val[0]}>{label}</th>)
+            } else {
+              head.push(<th key={val[0]}>{label}</th>)
             }
-            head.push(<th key={val[0]}>{label}</th>)
           }
         } else {
           let label = createLabel(val[0])
