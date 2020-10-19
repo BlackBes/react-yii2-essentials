@@ -250,7 +250,7 @@ class DataProvider extends Component {
             </div>
           </Modal>
 
-          <table className='table table-striped table-bordered table-hover'>
+          <table className='table table-striped table-hover'>
             <thead>
             <tr>{head}</tr>
             </thead>
