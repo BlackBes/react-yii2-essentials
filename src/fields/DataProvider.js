@@ -6,7 +6,6 @@ import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-import { setBreadcrumbs } from '../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-bootstrap4-modal'
@@ -63,17 +62,6 @@ class DataProvider extends Component {
           name.map(function (el) {
             fullName += el.charAt(0).toUpperCase() + el.slice(1) + ' '
           })
-          // const bread = [
-          //   {
-          //     name: 'Home',
-          //     link: '/'
-          //   },
-          //   {
-          //     name: fullName,
-          //     link: ''
-          //   }
-          // ]
-          // this_el.props.setBreadcrumbs(bread)
 
           this_el.setState({ isDataLoaded: true })
         } else {
@@ -261,11 +249,9 @@ class DataProvider extends Component {
 
 const mapStateToProps = (state) => ({
   api: state.api,
-  breadcrumbs: state.breadcrumbs
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setBreadcrumbs: (breadcrumb) => dispatch(setBreadcrumbs(breadcrumb))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider)
