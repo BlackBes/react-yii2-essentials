@@ -42,11 +42,11 @@ class DropDownList extends Component {
 
   listItem(props) {
     let array = []
-
-    Object.entries(this.props.options).map((data) => {
-      array.push(<option key={data[0]} value={data[0]}>{data[1]}</option>)
-    })
-
+    if (this.props.options){
+      Object.entries(this.props.options).map((data) => {
+        array.push(<option key={data[0]} value={data[0]}>{data[1]}</option>)
+      })
+    }
     return array
   }
 
