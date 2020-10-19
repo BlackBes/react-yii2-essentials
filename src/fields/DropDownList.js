@@ -88,6 +88,7 @@ class DropDownList extends Component {
                 name={this.props.name}
                 onChange={this.editApi}
                 required={this.props.required}>
+          <option value="" defaultValue={true}>-</option>
           {(this.listItem())}
         </select>
         <div
