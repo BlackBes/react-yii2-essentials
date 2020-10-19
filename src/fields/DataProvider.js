@@ -11,7 +11,7 @@ import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-bootstrap4-modal'
 import Pagination from '../navigation/pagination'
 import TableLoader from '../loaders/TableLoader'
-import {createLabel} from '../libs/yii-validation'
+import { createLabel } from '../libs/yii-validation'
 
 class DataProvider extends Component {
   constructor(props) {
@@ -130,7 +130,11 @@ class DataProvider extends Component {
       const this_el = this
       const head = []
       const rows = []
-      head.push(<th key='hash'>#</th>)
+
+      if (this.props.showCount !== false) {
+        head.push(<th key='hash'>#</th>)
+      }
+
       if (models.length === 0) {
         return (
           <h3>
@@ -140,36 +144,57 @@ class DataProvider extends Component {
       }
       Object.entries(models[0]).forEach(function(val, key) {
         if (this_el.props.hasOwnProperty('fields')) {
+
           if (this_el.props.fields.includes(val[0])) {
+            let elKey = ''
+            this_el.props.fields.find(function(el, index, array) {
+              if (el === val[0]) {
+                elKey = index
+              }
+            })
+
             let label = createLabel(val[0]);
             if (this_el.props.hasOwnProperty('labels')) {
               if (this_el.props.labels.hasOwnProperty(val[0])) {
                 label = this_el.props.labels[val[0]];
               }
-              head.push(<th key={val[0]}>{label}</th>)
+              head[elKey+1] = <th key={val[0]}>{label}</th>;
             } else {
-              head.push(<th key={val[0]}>{label}</th>)
+              head[elKey+1] = <th key={val[0]}>{label}</th>;
             }
+
           }
+
         } else {
           let label = createLabel(val[0])
           head.push(<th key={val[0]}>{label}</th>)
         }
       })
+
       head.push(
         <th key='free' className='action-column data-provider-control' />
       )
 
       Object.entries(models).forEach(function(value, key) {
         const row = []
-        row.push(<td key={'num-' + value[1].id}>{value[0]}</td>)
+
+        if (this_el.props.showCount !== false) {
+          row.push(<td key={'num-' + value[1].id}>{value[0]}</td>)
+        }
+
         Object.entries(value[1]).forEach(function(val, key) {
           if (this_el.props.hasOwnProperty('fields')) {
+            let elKey = '';
+            this_el.props.fields.find(function(el, index, array) {
+              if (el === val[0]) {
+                elKey = index
+              }
+            });
             if (this_el.props.fields.includes(val[0])) {
-              row.push(<td key={val[0] + '-' + value[1].id}>{val[1]}</td>)
+              row[elKey+1] = <td key={val[0] + '-' + value[1].id}>{val[1]}</td>;
             }
           } else {
-            row.push(<td key={val[0] + '-' + value[1].id}>{val[1]}</td>)
+            row.push(<td key={val[0] + '-' + value[1].id}>{val[1]}</td>);
           }
         })
 
@@ -258,10 +283,9 @@ class DataProvider extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  api: state.api,
+  api: state.api
 })
 
-const mapDispatchToProps = (dispatch) => ({
-})
+const mapDispatchToProps = (dispatch) => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider)

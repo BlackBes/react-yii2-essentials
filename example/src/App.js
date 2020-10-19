@@ -33,8 +33,8 @@ const App = () => {
             models={{}}
             fields={[
               'id',
-              'name',
               'discount',
+              'name',
               'phone_number',
               'address'
               //'updated_at',
@@ -42,6 +42,7 @@ const App = () => {
             labels={{
               'name': "Имя"
             }}
+            showCount={false}
           />
           </div>
           <InputField name={'address'} model={'clients'} label={''} class={'main-input'}
