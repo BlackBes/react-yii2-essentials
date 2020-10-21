@@ -4,6 +4,7 @@ import axios from 'axios'
 import stringify from 'qs-stringify/index'
 import { connect } from 'react-redux'
 import { validate, prepareLabel } from '../libs/yii-validation'
+import Select from 'react-select'
 
 class DropDownList extends Component {
   static propTypes = {
@@ -16,7 +17,7 @@ class DropDownList extends Component {
     /** Add more classes to field container. */
     class: PropTypes.string,
     /** Options array */
-    options: PropTypes.object,
+    options: PropTypes.arrayOf(PropTypes.object),
     /** Selected value */
     value: PropTypes.any,
     /** Function, that handle change event. */
@@ -28,7 +29,9 @@ class DropDownList extends Component {
     /** Validation value. Can be empty string or bool */
     validated: PropTypes.any,
     /** Default value text */
-    defaultValueText: PropTypes.string
+    defaultValueText: PropTypes.string,
+    /** Other props for plugin */
+    pluginProps: PropTypes.object
   }
 
   constructor(props) {
@@ -44,7 +47,7 @@ class DropDownList extends Component {
 
   listItem(props) {
     let array = []
-    if (this.props.options){
+    if (this.props.options) {
       Object.entries(this.props.options).map((data) => {
         array.push(<option key={data[0]} value={data[0]}>{data[1]}</option>)
       })
@@ -56,12 +59,12 @@ class DropDownList extends Component {
     const this_el = this
     //this.setState({value: event.target.value});
     this.props.onChange(event)
-    console.log(event.target.value)
+    //console.log(event)
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
         this_el.props.name,
-        event.target.value,
+        event.value,
         this_el.props.api.address,
         this_el.props.api.authToken,
         function() {
@@ -76,22 +79,64 @@ class DropDownList extends Component {
   }
 
   render() {
-    let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
+    let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation
+
+    const customStyles = {
+      control: (provided, state) => {
+        let borderColorFocused = '#80bdff'
+        let borderColor = '#ced4da'
+        let boxShadow = '0 0 0 .2rem rgba(0,123,255,.25)'
+        if (state.selectProps.validated === true) {
+          borderColorFocused = '#28a745'
+          borderColor = '#28a745'
+          boxShadow = '0 0 0 .2rem rgba(40,167,69,.25)'
+        } else if (state.selectProps.validated === false) {
+          borderColorFocused = '#dc3545'
+          borderColor = '#dc3545'
+          boxShadow = '0 0 0 .2rem rgba(220,53,69,.25)'
+        }
+        return {
+          ...provided,
+          width: '100%',
+          borderWidth: 1,
+          borderStyle: 'solid',
+          display: 'flex',
+          flexDirection: 'row',
+          borderColor: state.isFocused ? borderColorFocused : borderColor,
+          boxShadow: state.isFocused ? boxShadow : ''
+        }
+      }
+
+    }
+
     return (
       <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class}>
         <label className={'control-label'}
                htmlFor={this.props.model + '-' + this.props.name}>
           {this.labelName}
         </label>
-        <select id={this.props.model + '-' + this.props.name}
-                value={this.props.value}
-                className={'custom-select form-control ' + (validated !== '' ? (validated === true) ? 'is-valid' : 'is-invalid' : '')}
-                name={this.props.name}
-                onChange={this.editApi}
-                required={this.props.required}>
-          <option value="" defaultValue={true}>{(this.props.defaultValueText !== undefined) ? this.props.defaultValueText : 'Select data from list'}</option>
-          {(this.listItem())}
-        </select>
+        <Select
+          {...this.props.pluginProps}
+          styles={customStyles}
+          options={this.props.options}
+          isSearchable={true}
+          value={this.props.value}
+          validated={validated}
+          name={this.props.name}
+          onChange={this.editApi}
+          required={this.props.required}
+          className={(validated !== '' ? (validated === true) ? 'is-valid' : 'is-invalid' : '')}
+        />
+        {/*<select id={this.props.model + '-' + this.props.name}*/}
+        {/*        value={this.props.value}*/}
+        {/*        className={'custom-select form-control ' + (validated !== '' ? (validated === true) ? 'is-valid' : 'is-invalid' : '')}*/}
+        {/*        name={this.props.name}*/}
+        {/*        onChange={this.editApi}*/}
+        {/*        required={this.props.required}>*/}
+        {/*  <option value=""*/}
+        {/*          defaultValue={true}>{(this.props.defaultValueText !== undefined) ? this.props.defaultValueText : 'Select data from list'}</option>*/}
+        {/*  {(this.listItem())}*/}
+        {/*</select>*/}
         <div
           className={(validated !== '' ? (validated === true) ? 'valid-feedback' : 'invalid-feedback' : '')}>{(this.props.validated !== undefined) ? this.props.helpBlock : this.state.helpBlock}</div>
       </div>

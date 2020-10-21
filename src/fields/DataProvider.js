@@ -12,8 +12,32 @@ import Modal from 'react-bootstrap4-modal'
 import Pagination from '../navigation/pagination'
 import TableLoader from '../loaders/TableLoader'
 import { createLabel } from '../libs/yii-validation'
-
+import PropTypes from 'prop-types'
+//ToDo: Add propTypes
 class DataProvider extends Component {
+  // static propTypes = {
+  //   /** Name of field in model. */
+  //   name: PropTypes.string.isRequired,
+  //   /** Name of a model. */
+  //   model: PropTypes.string,
+  //   /** Value of field. */
+  //   value: PropTypes.any,
+  //   /** Label for input. If it empty or bool:false, using a field name. */
+  //   label: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  //   /** Add more classes to field container. */
+  //   class: PropTypes.string,
+  //   /** Placeholder for input. */
+  //   placeholder: PropTypes.string,
+  //   /** Function, that handle change event. */
+  //   onChange: PropTypes.func,
+  //   /** Required. */
+  //   required: PropTypes.bool,
+  //   /** Help block text */
+  //   helpBlock: PropTypes.string,
+  //   /** Help block text */
+  //   validated: PropTypes.any,
+  // }
+
   constructor(props) {
     super(props)
 

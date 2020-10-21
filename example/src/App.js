@@ -10,7 +10,7 @@ const App = () => {
   const [text, setText] = useState(0)
   const [textOutValidation, setTextOutValidation] = useState('')
   const [textOutHelpBlock, setTextOutHelpBlock] = useState('')
-  const [dropdownValue, setDropdownValue] = useState(3)
+  const [dropdownValue, setDropdownValue] = useState({value: '2', label: 'Test 1'})
   const [checkBoxValues, setCheckBoxValues] = useState({ '1': false, '2': true, '3': false })
   const [aloneCheckbox, setAloneCheckbox] = useState({ '1': false })
   const [radiobuttonValue, setRadiobuttonValue] = useState('2')
@@ -53,8 +53,12 @@ const App = () => {
                     placeholder={'Адреса'} onChange={(event) => setText(event.target.value)}
                     value={text} />
           <DropDownList name={'discount'} model={'clients'} label={''} class={'main-input'}
-                        options={{ '1': 'Test1', '2yt': 'Test2', '3': 'Test3' }}
-                        placeholder={'Адреса'} onChange={(event) => setDropdownValue(event.target.value)}
+                        options={[
+                          {value: '1', label: 'Test 1'},
+                          {value: '2', label: 'Test 2'},
+                          {value: '3rt', label: 'Test 3'},
+                        ]}
+                        placeholder={'Адреса'} onChange={(event) => setDropdownValue(event)}
                         value={dropdownValue} />
           <CheckBox name={'discount'} model={'clients'} label={''} class={'main-input'}
                     options={{ '1': 'Test1', '2': 'Test2', '3': 'Test3' }}
