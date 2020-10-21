@@ -164,7 +164,7 @@ class DataProvider extends Component {
         return (
           <h3>
             <small className='text-muted'>
-              {this.props.infoLables.create_first ? this.props.infoLables.create_first : "Create your first item"}
+              {this.props.infoLables ? this.props.infoLables.create_first : "Create your first item"}
             </small>
           </h3>
         )
@@ -255,12 +255,12 @@ class DataProvider extends Component {
           <Modal visible={this.state.modal} onClickBackdrop={this.closeModal}>
             <div className='modal-header'>
               <h5 className='modal-title'>
-                {this.props.infoLables.modal ? this.props.infoLables.modal.title : "Deleting"}
+                {this.props.infoLables ? this.props.infoLables.modal.title : "Deleting"}
               </h5>
             </div>
             <div className='modal-body'>
               <p>
-                {this.props.infoLables.modal ? this.props.infoLables.modal.confirmation : "Are you sure you want to delete this item?"}
+                {this.props.infoLables ? this.props.infoLables.modal.confirmation : "Are you sure you want to delete this item?"}
               </p>
             </div>
             <div className='modal-footer'>
@@ -269,14 +269,14 @@ class DataProvider extends Component {
                 className='btn btn-secondary'
                 onClick={this.closeModal}
               >
-                {this.props.infoLables.modal ? this.props.infoLables.modal.close : "Close"}
+                {this.props.infoLables ? this.props.infoLables.modal.close : "Close"}
               </button>
               <button
                 type='button'
                 className='btn btn-danger'
                 onClick={this.deleteModel}
               >
-                {this.props.infoLables.modal ? this.props.infoLables.modal.delete : "Delete"}
+                {this.props.infoLables ? this.props.infoLables.modal.delete : "Delete"}
 
               </button>
             </div>
@@ -306,7 +306,7 @@ class DataProvider extends Component {
             style={{ marginTop: '20px' }}
             role='alert'
           >
-            {this.props.infoLables.network_error ? this.props.infoLables.network_error : "Network Error occurred!"}
+            {this.props.infoLables ? this.props.infoLables.network_error : "Network Error occurred!"}
           </div>
         )
       }
