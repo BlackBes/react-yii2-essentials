@@ -28,6 +28,8 @@ class InputField extends Component {
     helpBlock: PropTypes.string,
     /** Help block text */
     validated: PropTypes.any,
+    /** Other props for plugin */
+    pluginProps: PropTypes.object
   }
 
   constructor(props) {
@@ -92,7 +94,7 @@ class InputField extends Component {
                 : 'is-invalid'
               : '')
           }
-          type='text'
+          {...this.props.pluginProps}
           name={this.props.name}
           placeholder={this.props.placeholder}
           value={this.props.value || ''}

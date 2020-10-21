@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { InputField, TextArea, DropDownList, CheckBox, RadioButton, DataProvider, PhonePicker } from 'react-yii2-essentials'
+import { InputField, TextArea, DropDownList, CheckBox, RadioButton, DataProvider, PhonePicker, DatePicker } from 'react-yii2-essentials'
 import store from './store'
 import { Provider } from 'react-redux'
 import 'react-yii2-essentials/src/styles.module.css'
@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 const App = () => {
   const [text, setText] = useState(0)
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [date, setDate] = useState('')
   const [textOutValidation, setTextOutValidation] = useState('')
   const [textOutHelpBlock, setTextOutHelpBlock] = useState('')
   const [dropdownValue, setDropdownValue] = useState({ value: '2', label: 'Test 1' })
@@ -46,11 +47,23 @@ const App = () => {
                 'name': 'Имя'
               }}
               showCount={false}
+              infoLabels={{}}
             />
           </div>
+          <DatePicker
+            style
+            name={'departure_date'}
+            model={'orders'}
+            label={''}
+            className={'main-input'}
+            onChange={(event) => setDate(event)}
+            value={date}
+          />
           <InputField name={'address'} model={'clients'} label={''} class={'main-input'}
                       placeholder={'Адреса'} onChange={(event) => setText(event.target.value)}
-                      value={text} validated={textOutValidation} helpBlock={textOutHelpBlock} />
+                      value={text} validated={textOutValidation} helpBlock={textOutHelpBlock} pluginProps={{
+                        type: 'password'
+          }} />
           <TextArea name={'address'} model={'clients'} label={''} class={'main-input'}
                     placeholder={'Адреса'} onChange={(event) => setText(event.target.value)}
                     value={text} />
@@ -82,6 +95,7 @@ const App = () => {
             onChange={(event) => setPhoneNumber(event)}
             value={phoneNumber}
           />
+
         </div>
       </Router>
     </Provider>

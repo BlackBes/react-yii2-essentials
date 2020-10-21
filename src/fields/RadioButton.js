@@ -23,7 +23,9 @@ class RadioButton extends Component {
       PropTypes.number
     ]),
     /** Function, that handle change event. */
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    /** Other props for plugin */
+    pluginProps: PropTypes.object
   }
 
 
@@ -49,6 +51,7 @@ class RadioButton extends Component {
       array.push(
         <div key={'divRadio-' + data[0]} className={'form-check form-check-inline'}>
           <input
+            {...this.props.pluginProps}
             id={this.props.model + '-' + this.props.name + ' radio-' + data[0]}
             className={'form-check-input ' + (this.state.validation !== '' ? (this.state.validation === true) ? 'is-valid' : 'is-invalid' : '')}
             type={'radio'}

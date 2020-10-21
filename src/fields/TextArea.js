@@ -25,6 +25,8 @@ class TextArea extends Component {
     helpBlock: PropTypes.string,
     /** Help block text */
     validated: PropTypes.any,
+    /** Other props for plugin */
+    pluginProps: PropTypes.object
   }
 
   constructor(props) {
@@ -81,6 +83,7 @@ class TextArea extends Component {
           {this.labelName}
         </label>
         <textarea
+          {...this.props.pluginProps}
           id={this.props.model + '-' + this.props.name}
           className={
             'form-control ' +

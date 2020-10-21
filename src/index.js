@@ -12,6 +12,7 @@ import InputField from './fields/InputField'
 import RadioButton from './fields/RadioButton'
 import TextArea from './fields/TextArea'
 import PhonePicker from './fields/PhonePicker'
+import DatePicker from './fields/DatePicker'
 import {validate, prepareLabel, createLabel} from './libs/yii-validation'
 export {
   TableLoader,
@@ -28,6 +29,7 @@ export {
   TextArea,
   DataProvider,
   PhonePicker,
+  DatePicker,
   validate,
   prepareLabel,
   createLabel

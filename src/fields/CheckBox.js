@@ -20,7 +20,9 @@ class CheckBox extends Component {
     /** Values of fields. */
     values: PropTypes.objectOf(PropTypes.bool),
     /** Key of field. */
-    key: PropTypes.any
+    key: PropTypes.any,
+    /** Other props for plugin */
+    pluginProps: PropTypes.object
   }
 
   constructor(props) {
@@ -69,6 +71,7 @@ class CheckBox extends Component {
           className='form-check form-check-inline'
         >
           <input
+            {...this.props.pluginProps}
             id={this.props.model + '-' + this.props.name + ' checkbox-' + data[0]}
             className={
               'form-check-input ' +

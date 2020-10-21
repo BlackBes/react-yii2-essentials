@@ -1,40 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
-import stringify from 'qs-stringify/index'
 import { connect } from 'react-redux'
-import { validate, prepareLabel } from '../libs/yii-validation'
+import { validate, prepareLabel } from '../libs/yii-validation';
 
-import PhoneInput from 'react-phone-number-input'
+import {IMaskInput} from 'react-imask';
+import Datetime from "react-datetime";
+import "react-datetime/css/react-datetime.css";
+import 'moment/locale/ru';
+import moment from "moment";
+//import IMask from 'imask/esm/imask';
 
-const CustomInput = React.forwardRef((props, ref) => {
-  return <input
-    {...props}
-    ref={ref}
-    id={props.model + '-' + props.name}
-    className={
-      'form-control ' + props.className + ' ' +
-      (props.validated.toString() !== ''
-        ? props.validated.toString() === 'true'
-          ? 'is-valid'
-          : 'is-invalid'
-        : '')
-    }
-    type={props.type}
-    name={props.name}
-    placeholder={props.placeholder}
-    autoComplete={props.autoComplete}
-    value={props.value || ''}
-    onChange={(event) => props.onChange(event)}
-    onFocus={props.onFocus}
-    onBlur={props.onBlur}
-    onCut={props.onCut}
-    onKeyDown={props.onKeyDown}
-    onPaste={props.onPaste}
-  />
-});
-
-class PhonePicker extends Component {
+class DatePicker extends Component {
   static propTypes = {
     /** Name of field in model. */
     name: PropTypes.string.isRequired,
@@ -71,16 +47,16 @@ class PhonePicker extends Component {
     this.editApi = this.editApi.bind(this)
   }
 
-  editApi = async (event) => {
+  editApi = async (date) => {
     const this_el = this
     //this.setState({value: event.target.value});
-    this.props.onChange(event)
+    this.props.onChange(date)
     //console.log(event)
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
         this_el.props.name,
-        event.toString(),
+        date.toString(),
         this_el.props.api.address,
         this_el.props.api.authToken,
         function() {
@@ -95,7 +71,7 @@ class PhonePicker extends Component {
   }
 
   render() {
-    let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation
+    let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
 
     return (
       <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class}>
@@ -103,23 +79,22 @@ class PhonePicker extends Component {
                htmlFor={this.props.model + '-' + this.props.name}>
           {this.labelName}
         </label>
-        <PhoneInput
+        <Datetime
           {...this.props.pluginProps}
-          international
-          defaultCountry="UA"
-          className={this.props.className+' '+(validated.toString() !== ''
-            ? validated.toString() === 'true'
-              ? 'is-valid'
-              : 'is-invalid'
-            : '')}
-          name={this.props.name}
-          model={this.props.model}
-          validated={validated.toString()}
-          placeholder={this.props.placeholder}
-          required={this.props.required}
+          dateFormat={'DD.MM.YYYY'}
+          timeFormat={"HH:mm"}
           value={this.props.value}
-          onChange={this.editApi}
-          inputComponent={CustomInput}
+          placeholder={this.props.placeholder}
+          //onChange={(value_) => this.editApi(value_)}
+          locale="Ru"
+          {...this.props.pluginProps}
+          inputProps={{
+            validated: validated,
+            model: this.props.model,
+            name: this.props.name,
+            placeholder: this.props.placeholder
+          }}
+          renderInput={ExampleCustomInput}
         />
         <div
           className={(validated !== '' ? (validated === true) ? 'valid-feedback' : 'invalid-feedback' : '')}>{(this.props.validated !== undefined) ? this.props.helpBlock : this.state.helpBlock}</div>
@@ -128,10 +103,68 @@ class PhonePicker extends Component {
   }
 }
 
+const ExampleCustomInput = (props, openCalendar, closeCalendar) => {
+  let momentFormat = 'DD.MM.YYYY HH:mm';
+  return <IMaskInput
+    mask={Date}
+    pattern={momentFormat}
+    lazy={false}
+    min={new Date(1970, 0, 1)}
+    max={new Date(2030, 0, 1)}
+    format={function (date) {
+      return moment(date).format(momentFormat);
+    }}
+    parse={function (str) {
+      return moment(str, momentFormat);
+    }}
+    blocks={{
+      YYYY: {
+        mask: IMask.MaskedRange,
+        from: 1970,
+        to: 2030
+      },
+      MM: {
+        mask: IMask.MaskedRange,
+        from: 1,
+        to: 12
+      },
+      DD: {
+        mask: IMask.MaskedRange,
+        from: 1,
+        to: 31
+      },
+      HH: {
+        mask: IMask.MaskedRange,
+        from: 0,
+        to: 23
+      },
+      mm: {
+        mask: IMask.MaskedRange,
+        from: 0,
+        to: 59
+      }
+    }}
+    id={props.model + '-' + props.name}
+    className={
+      'form-control ' + props.className + ' ' +
+      (props.validated.toString() !== ''
+        ? props.validated.toString() === 'true'
+          ? 'is-valid'
+          : 'is-invalid'
+        : '')
+    }
+    name={props.name}
+    placeholder={props.placeholder}
+    value={props.value || ''}
+    onClick={(event) => openCalendar(event)}
+    onInput={(event) => props.onChange(event)}
+  />
+};
+
 const mapStateToProps = state => ({
   api: state.api
 })
 
 const mapDispatchToProps = dispatch => ({})
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhonePicker)
+export default connect(mapStateToProps, mapDispatchToProps)(DatePicker)
