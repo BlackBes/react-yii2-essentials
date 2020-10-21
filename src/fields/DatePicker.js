@@ -51,7 +51,7 @@ class DatePicker extends Component {
     const this_el = this
     //this.setState({value: event.target.value});
     this.props.onChange(date)
-    //console.log(event)
+    console.log(date)
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
@@ -85,7 +85,7 @@ class DatePicker extends Component {
           timeFormat={"HH:mm"}
           value={this.props.value}
           placeholder={this.props.placeholder}
-          //onChange={(value_) => this.editApi(value_)}
+          onChange={(value_) => this.editApi(value_)}
           locale="Ru"
           {...this.props.pluginProps}
           inputProps={{
