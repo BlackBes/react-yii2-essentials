@@ -1,6 +1,6 @@
 {
   "name": "react-yii2-essentials",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "React components, that support working with Yii2.",
   "author": "BlackBes",
   "license": "MIT",
@@ -78,6 +78,7 @@
   ],
   "dependencies": {
     "react-bootstrap-select": "^0.14.0",
+    "react-phone-number-input": "^3.1.0",
     "react-select": "^3.1.0"
   }
 }
