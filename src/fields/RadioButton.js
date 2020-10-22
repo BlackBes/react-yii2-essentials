@@ -25,7 +25,9 @@ class RadioButton extends Component {
     /** Function, that handle change event. */
     onChange: PropTypes.func,
     /** Other props for plugin */
-    pluginProps: PropTypes.object
+    pluginProps: PropTypes.object,
+    /** Set required icon (require server validation!) */
+    required: PropTypes.bool
   }
 
 
@@ -76,8 +78,9 @@ class RadioButton extends Component {
   }
 
   render() {
+    let required = (this.props.required === true) ? 'required' : '';
     return (
-      <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class}>
+      <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class+' '+required}>
         <div>
           <label className={'control-label'}
                  htmlFor={this.props.model + '-' + this.props.name}>

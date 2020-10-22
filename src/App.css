@@ -109,6 +109,14 @@ html, body, #root, .layout-wrap {
   word-break: break-all;
 }
 
+form div.required label.control-label:after {
+
+  content:" * ";
+
+  color:red;
+
+}
+
 @media only screen and (max-width: 930px) {
   .table {
     display: flex;

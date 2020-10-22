@@ -28,7 +28,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <form>
           {/*<IndexDataLoader />*/}
           {/*<TableLoader />*/}
           <div style={{ 'margin': 50 }}>
@@ -58,6 +58,7 @@ const App = () => {
             className={'main-input'}
             onChange={(event) => setDate(event)}
             value={date}
+            required={true}
           />
           <InputField name={'address'} model={'clients'} label={''} class={'main-input'}
                       placeholder={'Адреса'} onChange={(event) => setText(event.target.value)}
@@ -74,7 +75,7 @@ const App = () => {
                           { value: '3rt', label: 'Test 3' }
                         ]}
                         placeholder={'Адреса'} onChange={(event) => setDropdownValue(event)}
-                        value={dropdownValue} />
+                        value={dropdownValue} required={true} />
           <CheckBox name={'discount'} model={'clients'} label={''} class={'main-input'}
                     options={{ '1': 'Test1', '2': 'Test2', '3': 'Test3' }}
                     placeholder={'Адреса'} onChange={(values) => setCheckBoxValues(values)}
@@ -82,7 +83,7 @@ const App = () => {
           <CheckBox name={'discount'} model={'clients'} label={''} class={'main-input'}
                     options={{ '1': 'Test Alone Guy' }}
                     placeholder={'Адреса'} onChange={(values) => setAloneCheckbox(values)}
-                    values={aloneCheckbox} />
+                    values={aloneCheckbox} required={true}/>
           <RadioButton name={'discount'} model={'clients'} label={''} class={'main-input'}
                        options={{ '1': 'Test R 1', '2': 'Test R 2', '3': 'Test R 3' }}
                        placeholder={'Адреса'} onChange={(value) => setRadiobuttonValue(value)}
@@ -96,7 +97,7 @@ const App = () => {
             value={phoneNumber}
           />
 
-        </div>
+        </form>
       </Router>
     </Provider>
   )

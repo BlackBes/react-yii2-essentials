@@ -108,9 +108,9 @@ class DropDownList extends Component {
       }
 
     }
-
+    let required = (this.props.required === true) ? 'required' : '';
     return (
-      <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class}>
+      <div className={'form-group field-' + this.props.model + '-' + this.props.name + ' ' + this.props.class+ ' ' +required}>
         <label className={'control-label'}
                htmlFor={this.props.model + '-' + this.props.name}>
           {this.labelName}

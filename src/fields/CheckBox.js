@@ -22,7 +22,9 @@ class CheckBox extends Component {
     /** Key of field. */
     key: PropTypes.any,
     /** Other props for plugin */
-    pluginProps: PropTypes.object
+    pluginProps: PropTypes.object,
+    /** Set required icon (require server validation!) */
+    required: PropTypes.bool
   }
 
   constructor(props) {
@@ -68,7 +70,7 @@ class CheckBox extends Component {
       array.push(
         <div
           key={'divCheckbox-' + data[0]}
-          className='form-check form-check-inline'
+          className={'form-check form-check-inline'}
         >
           <input
             {...this.props.pluginProps}
@@ -103,6 +105,7 @@ class CheckBox extends Component {
   }
 
   render() {
+    let required = (this.props.required === true) ? 'required' : '';
     return (
       <div
         className={
@@ -111,7 +114,9 @@ class CheckBox extends Component {
           '-' +
           this.props.name +
           ' ' +
-          this.props.class
+          this.props.class+
+          ' '+
+          required
         }
       >
         <div>
