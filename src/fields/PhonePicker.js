@@ -76,21 +76,22 @@ class PhonePicker extends Component {
     //this.setState({value: event.target.value});
     this.props.onChange(event)
     //console.log(event)
-
-    if (this_el.props.model !== undefined && this_el.props.model !== '') {
-      validate(this_el.props.model,
-        this_el.props.name,
-        event.toString(),
-        this_el.props.api.address,
-        this_el.props.api.authToken,
-        function() {
-          this_el.setState({ helpBlock: '' })
-          this_el.setState({ validation: true })
-        },
-        function(err) {
-          this_el.setState({ helpBlock: err })
-          this_el.setState({ validation: false })
-        })
+    if(event !== undefined) {
+      if (this_el.props.model !== undefined && this_el.props.model !== '') {
+        validate(this_el.props.model,
+          this_el.props.name,
+          event.toString(),
+          this_el.props.api.address,
+          this_el.props.api.authToken,
+          function() {
+            this_el.setState({ helpBlock: '' })
+            this_el.setState({ validation: true })
+          },
+          function(err) {
+            this_el.setState({ helpBlock: err })
+            this_el.setState({ validation: false })
+          })
+      }
     }
   }
 

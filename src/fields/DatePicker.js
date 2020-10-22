@@ -9,7 +9,7 @@ import "react-datetime/css/react-datetime.css";
 import 'moment/locale/ru';
 import moment from "moment";
 //import IMask from 'imask/esm/imask';
-
+const momentFormat = 'DD.MM.YYYY HH:mm';
 class DatePicker extends Component {
   static propTypes = {
     /** Name of field in model. */
@@ -50,13 +50,13 @@ class DatePicker extends Component {
   editApi = async (date) => {
     const this_el = this
     //this.setState({value: event.target.value});
-    this.props.onChange(date)
-    console.log(date)
+    this.props.onChange(date);
+    date = moment(date, momentFormat).format(momentFormat);
 
     if (this_el.props.model !== undefined && this_el.props.model !== '') {
       validate(this_el.props.model,
         this_el.props.name,
-        date.toString(),
+        date,
         this_el.props.api.address,
         this_el.props.api.authToken,
         function() {
@@ -104,7 +104,6 @@ class DatePicker extends Component {
 }
 
 const ExampleCustomInput = (props, openCalendar, closeCalendar) => {
-  let momentFormat = 'DD.MM.YYYY HH:mm';
   return <IMaskInput
     mask={Date}
     pattern={momentFormat}
