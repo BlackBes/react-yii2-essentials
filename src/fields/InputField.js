@@ -67,7 +67,7 @@ class InputField extends Component {
 
   render() {
     let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
-    let required = (this.props.required === true) ? 'required' : '';
+    let required = (this.props.pluginProps.required === true) ? ' required' : '';
     return (
       <div
         className={
@@ -76,13 +76,11 @@ class InputField extends Component {
           '-' +
           this.props.name +
           ' ' +
-          this.props.class+
-          ' '+
-          required
+          this.props.class
         }
       >
         <label
-          className='control-label'
+          className={'control-label' + required}
           htmlFor={this.props.model + '-' + this.props.name}
         >
           {this.labelName}
@@ -100,7 +98,6 @@ class InputField extends Component {
           {...this.props.pluginProps}
           name={this.props.name}
           placeholder={this.props.placeholder}
-          required={this.props.required }
           value={this.props.value || ''}
           onChange={this.editApi}
         />
