@@ -105,7 +105,7 @@ class CheckBox extends Component {
   }
 
   render() {
-    let required = (this.props.required === true) ? 'required' : '';
+    let required = (this.props.pluginProps.hasOwnProperty("required") === true) ? ' required' : '';
     return (
       <div
         className={
@@ -114,14 +114,12 @@ class CheckBox extends Component {
           '-' +
           this.props.name +
           ' ' +
-          this.props.class+
-          ' '+
-          required
+          this.props.class
         }
       >
         <div>
           <label
-            className='control-label'
+            className={'control-label' + required}
             htmlFor={this.props.model + '-' + this.props.name}
           >
             {this.labelName}

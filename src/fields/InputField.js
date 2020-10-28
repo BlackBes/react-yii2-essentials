@@ -67,7 +67,7 @@ class InputField extends Component {
 
   render() {
     let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
-    let required = (this.props.pluginProps.required === true) ? ' required' : '';
+    let required = (this.props.pluginProps.hasOwnProperty("required") === true) ? ' required' : '';
     return (
       <div
         className={
