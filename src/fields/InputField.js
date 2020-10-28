@@ -100,6 +100,7 @@ class InputField extends Component {
           {...this.props.pluginProps}
           name={this.props.name}
           placeholder={this.props.placeholder}
+          required={this.props.required }
           value={this.props.value || ''}
           onChange={this.editApi}
         />
