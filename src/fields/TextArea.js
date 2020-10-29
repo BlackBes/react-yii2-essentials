@@ -65,7 +65,7 @@ class TextArea extends Component {
 
   render() {
     let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
-    let required = (this.props.pluginProps.hasOwnProperty("required") === true) ? ' required' : '';
+    let required = (this.props.pluginProps !== undefined) ? (this.props.pluginProps.hasOwnProperty("required") ? 'required' : '') : '';
 
     return (
       <div
@@ -79,7 +79,7 @@ class TextArea extends Component {
         }
       >
         <label
-          className={'control-label'+required}
+          className={'control-label '+required}
           htmlFor={this.props.model + '-' + this.props.name}
         >
           {this.labelName}

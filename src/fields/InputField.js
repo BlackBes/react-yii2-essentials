@@ -67,7 +67,8 @@ class InputField extends Component {
 
   render() {
     let validated = (this.props.validated !== undefined) ? this.props.validated : this.state.validation;
-    let required = (this.props.pluginProps.hasOwnProperty("required") === true) ? ' required' : '';
+    let required = (this.props.pluginProps !== undefined) ? (this.props.pluginProps.hasOwnProperty("required") ? (this.props.pluginProps.required === true) ? 'required' : '' : '') : '';
+
     return (
       <div
         className={
@@ -80,7 +81,7 @@ class InputField extends Component {
         }
       >
         <label
-          className={'control-label' + required}
+          className={'control-label ' + required}
           htmlFor={this.props.model + '-' + this.props.name}
         >
           {this.labelName}

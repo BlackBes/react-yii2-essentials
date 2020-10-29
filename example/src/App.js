@@ -63,6 +63,7 @@ const App = () => {
           <InputField name={'address'} model={'clients'} label={''} class={'main-input'}
                       placeholder={'Адреса'} onChange={(event) => setText(event.target.value)}
                       value={text} validated={textOutValidation} helpBlock={textOutHelpBlock} pluginProps={{
+                        required: true,
                         type: 'password'
           }} />
           <TextArea name={'address'} model={'clients'} label={''} class={'main-input'}
