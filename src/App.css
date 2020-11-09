@@ -119,6 +119,10 @@ label.required:after {
   color: red;
 }
 
+/*NEW STYLES*/
+
+
+
 @media only screen and (max-width: 930px) {
   .table {
     display: flex;
