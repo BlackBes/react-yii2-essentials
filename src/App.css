@@ -24,6 +24,15 @@ html, body, #root, .layout-wrap {
   justify-content: space-between;
 }
 
+.PhoneInputInput {
+
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+
+  padding: 9px;
+  color: #495057;
+}
+
 .loader {
   display: flex;
   justify-content: center;
