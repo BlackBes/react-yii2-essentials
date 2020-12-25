@@ -1,3 +1,6 @@
+# ATTENTION: Library is currently in development. We are looking for maintainers
+
+
 # react-yii2-essentials
 
 > React components, that support working with Yii2.
