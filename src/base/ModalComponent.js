@@ -32,7 +32,7 @@ export const ModalComponent = (props) => {
   let _onClose = props.onClose;
 
   return (
-    <Modal visible={_isVisible} onClickBackdrop={_onClose} className={_className}>
+    <Modal {...props.pluginProps} visible={_isVisible} onClickBackdrop={_onClose} className={_className}>
 
       {_customHeader !== undefined ? (
         <div className={'modal-header ' + _headerClass}>
