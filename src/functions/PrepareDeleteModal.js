@@ -1,4 +1,4 @@
-import {ModalComponent} from "../base/ModalComponent";
+import ModalComponent from "../base/ModalComponent";
 import React from "react";
 
 const PrepareDeleteModal = (onClose, onDelete, isVisible, t) => {
@@ -32,4 +32,4 @@ const PrepareDeleteModal = (onClose, onDelete, isVisible, t) => {
   )
 }
 
-export {PrepareDeleteModal};
+export default PrepareDeleteModal;

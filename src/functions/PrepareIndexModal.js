@@ -1,4 +1,4 @@
-import {ModalComponent} from "../base/ModalComponent";
+import ModalComponent from "../base/ModalComponent";
 import React from "react";
 
 const PrepareIndexModal = (callbacks, isVisible, t, action) => {
@@ -71,4 +71,4 @@ const PrepareIndexModal = (callbacks, isVisible, t, action) => {
   )
 }
 
-export {PrepareIndexModal};
+export default PrepareIndexModal;

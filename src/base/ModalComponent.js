@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Modal from "react-bootstrap4-modal";
 
-export const ModalComponent = (props) => {
+const ModalComponent = (props) => {
 
   //general
   let _isVisible = props.isVisible;
@@ -67,3 +67,4 @@ export const ModalComponent = (props) => {
     </Modal>
   )
 }
+export default ModalComponent

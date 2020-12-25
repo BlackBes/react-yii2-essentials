@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Placeholder = ({title}) => {
+const Placeholder = ({title}) => {
 
   return (
     <div style={{display:'flex'}} className="placeholder-container">
@@ -9,3 +9,4 @@ export const Placeholder = ({title}) => {
     </div>
   )
 }
+export default Placeholder

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Pagination} from "react-yii2-essentials";
 import {Link} from "react-router-dom";
 
-export class DataView extends Component {
+export default class DataView extends Component {
 
   constructor(props) {
     super(props);

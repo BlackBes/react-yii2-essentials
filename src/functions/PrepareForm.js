@@ -12,4 +12,4 @@ const PrepareForm = (model, data) => {
     return arr;
 }
 
-export { PrepareForm };
+export default PrepareForm;
