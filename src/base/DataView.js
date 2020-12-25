@@ -43,10 +43,10 @@ export default class DataView extends Component {
         <div key={isModel ? "grid-item-model-"+col : 'grid-item-'+col} className={"grid-item"}>
           {isModel ?
             (
-              <>
+              <React.Fragment>
                 <div className="tooltip-title">{attributes[col]}</div>
                 <div>{model[col]}</div>
-              </>
+              </React.Fragment>
             ) :
             attributes[col]}
         </div>

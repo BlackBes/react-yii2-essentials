@@ -25,14 +25,14 @@ const PrepareDeleteModal = (onClose, onDelete, isVisible, labels = {}) => {
       body={{ content: (<p>{labels ? labels.confirmation : 'Are you sure you want to delete this item?'}</p>) }}
       footer={{
         content: (
-          <>
+          <React.Fragment>
             <button type='button' className='btn btn-secondary' onClick={onClose}>
               {labels ? labels.close : 'Close'}
             </button>
             <button type='button' className='btn btn-danger' onClick={onDelete}>
               {labels ? labels.delete : 'Delete'}
             </button>
-          </>
+          </React.Fragment>
         )
       }}
     />
@@ -96,7 +96,7 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
       }}
       footer={{
         content: (
-          <>
+          <React.Fragment>
             <button type='button' className='btn btn-secondary' onClick={onClose}>
               {labels ? labels.close : 'Close'}
             </button>
@@ -111,7 +111,7 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
                   {labels ? labels.restore : 'Restore'}
                 </button>
             }
-          </>
+          </React.Fragment>
         )
       }}
     />
