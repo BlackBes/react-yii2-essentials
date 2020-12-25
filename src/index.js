@@ -18,9 +18,9 @@ import DataView from './base/DataView'
 import AuthTypeRoute from './base/AuthTypeRoute'
 import ModalComponent from './base/ModalComponent'
 import Placeholder from './base/Placeholder'
-import PrepareIndexModal from './functions/PrepareIndexModal'
 import PrepareForm from './functions/PrepareForm'
-import PrepareDeleteModal from './functions/PrepareDeleteModal'
+import {PrepareDeleteModal, PrepareIndexModal} from './functions/modals'
+import {FetchIndexData, ManipulateIndexData} from './functions/actions'
 
 export {
   TableLoader,
@@ -45,7 +45,9 @@ export {
   AuthTypeRoute,
   ModalComponent,
   Placeholder,
-  PrepareDeleteModal,
   PrepareForm,
-  PrepareIndexModal
+  PrepareIndexModal,
+  PrepareDeleteModal,
+  FetchIndexData,
+  ManipulateIndexData
 }
