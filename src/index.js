@@ -14,6 +14,14 @@ import TextArea from './fields/TextArea'
 import PhonePicker from './fields/PhonePicker'
 import DatePicker from './fields/DatePicker'
 import {validate, prepareLabel, createLabel} from './libs/yii-validation'
+import DataView from './base/DataView'
+import AuthTypeRoute from './base/AuthTypeRoute'
+import ModalComponent from './base/ModalComponent'
+import Placeholder from './base/Placeholder'
+import PrepareIndexModal from './functions/PrepareIndexModal'
+import PrepareForm from './functions/PrepareForm'
+import PrepareDeleteModal from './functions/PrepareDeleteModal'
+
 export {
   TableLoader,
   IndexDataLoader,
@@ -32,5 +40,12 @@ export {
   DatePicker,
   validate,
   prepareLabel,
-  createLabel
+  createLabel,
+  DataView,
+  AuthTypeRoute,
+  ModalComponent,
+  Placeholder,
+  PrepareDeleteModal,
+  PrepareForm,
+  PrepareIndexModal
 }
