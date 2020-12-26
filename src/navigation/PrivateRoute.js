@@ -2,6 +2,10 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+/**
+ * Allows to access routes by user with valid auth token.
+ * Redirects to /login on fail
+ */
 function PrivateRoute({ component: Component, api, ...rest }) {
   return (
     <Route

@@ -1,6 +1,30 @@
 import React, {Component} from 'react';
 import Modal from "react-bootstrap4-modal";
 
+/**
+ * Bootstrap modal as a react component.
+ * @param props
+ * @param {boolean} props.isVisible Determine if modal is visible or hidden
+ * @param {string} props.className Modal class name.
+ *
+ * @param {{}} props.header Modal header.
+ * @param {string} props.header.className Custom class for modal header.
+ * @param {any} props.header.content Header content.
+ *
+ * @param {{}} props.title Modal title.
+ * @param {string} props.title.className Custom class for modal title.
+ * @param {any} props.title.content Header content.
+ *
+ * @param {{}} props.body Modal body.
+ * @param {string} props.body.className Custom class for modal body.
+ * @param {any} props.body.content Header content.
+ *
+ * @param {{}} props.footer Modal footer.
+ * @param {string} props.footer.className Custom class for modal footer.
+ * @param {any} props.footer.content Header content.
+ *
+ * @param props.onClose Callback for modal close event
+ */
 const ModalComponent = (props) => {
 
   //general

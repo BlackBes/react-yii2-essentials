@@ -4,7 +4,7 @@ import { faSync, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 /**
- * This modal is usually used on model/view for actionDelete() event.
+ * This modal is usually used for actionDelete() event.
  * @param {(event: React.MouseEvent<HTMLButtonElement>) => void} onClose Event that triggers when user clicks "Close" button
  * @param {(event: React.MouseEvent<HTMLButtonElement>) => void} onDelete Event that triggers when user clicks "Delete" button
  * @param {boolean} isVisible Is modal active?

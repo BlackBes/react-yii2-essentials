@@ -202,7 +202,7 @@ const App = () => {
             updated_at: 'Updated_at',
           }}
           actions={{
-            view: {title: "view"},
+            view: {title: "view", icon: <div><strong>Cust0m <i>action icon</i> as a HTML</strong><button className={"btn btn-success"}>bTn</button></div>},
             update: {title: "update"},
             delete: {title: "delete"},
             restore: {title: "restore"},

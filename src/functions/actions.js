@@ -1,6 +1,19 @@
 import axios from 'axios'
 import stringify from 'qs-stringify'
 
+/**
+ * Async function used to fetch index data from server.
+ * @param api
+ * @param api.address Api address of your server
+ * @param api.authToken User auth token
+ * @param {string} model Model name
+ * @param page Page number to be used as offset for query
+ * @param onDataFetched Callback that triggers after we receive response from the server.
+ * @param onDataFetched.onSuccess - Callback that triggers if the response is successful.
+ * @param onDataFetched.onError - Callback that triggers if the response was unsuccessful.
+ * @returns {Promise<void>}
+ * @constructor
+ */
 const FetchIndexData = async (api, model, page, onDataFetched) => {
   await axios({
     method: 'post',
@@ -22,6 +35,20 @@ const FetchIndexData = async (api, model, page, onDataFetched) => {
   })
 }
 
+/**
+ * Async function used to fetch and build necessary data for modal callbacks.
+ * @param api
+ * @param api.address Api address of your server
+ * @param api.authToken User auth token
+ * @param {string} model Model name
+ * @param {string} action Controller action. Ex: actionDelete() will be 'delete'; actionGetNews() will be 'get-news'
+ * @param id Model id
+ * @param onManipulateIndexData Callback that triggers after we receive response from the server.
+ * @param onManipulateIndexData.onSuccess - Callback that triggers if the response is successful.
+ * @param onManipulateIndexData.onError - Callback that triggers if the response was unsuccessful.
+ * @returns {Promise<void>}
+ * @constructor
+ */
 const ManipulateIndexData = async (api, model, action, id, onManipulateIndexData) => {
   await axios({
     method: 'post',
