@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Pagination} from "react-yii2-essentials";
 import {Link} from "react-router-dom";
+import { faPencilAlt, faSearch, faSyncAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class DataView extends Component {
 
@@ -59,14 +61,13 @@ export default class DataView extends Component {
 
   actionButtons(actions, model) {
     const _controller = this.props.modelName;
-
     let items = []
 
     const defaultIcons = {
-      view: <i className="fad fa-search"></i>,
-      update: <i className="fad fa-pencil-alt"></i>,
-      delete: <i className="fas fa-trash-alt"></i>,
-      restore: <i className="fas fa-sync-alt"></i>,
+      view: <FontAwesomeIcon icon={faSearch} />,
+      update: <FontAwesomeIcon icon={faPencilAlt} />,
+      delete: <FontAwesomeIcon icon={faTrashAlt} />,
+      restore: <FontAwesomeIcon icon={faSyncAlt} />,
     }
 
     for (let action in actions) {

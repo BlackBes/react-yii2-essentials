@@ -1,11 +1,15 @@
 import ModalComponent from '../base/ModalComponent'
 import React from 'react'
+import { faSync, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 /**
+ * This modal is usually used on model/view for actionDelete() event.
  * @param {(event: React.MouseEvent<HTMLButtonElement>) => void} onClose Event that triggers when user clicks "Close" button
  * @param {(event: React.MouseEvent<HTMLButtonElement>) => void} onDelete Event that triggers when user clicks "Delete" button
  * @param {boolean} isVisible Is modal active?
- * @param labels Modal labels (title, confirmation, etc.)
+ * @param labels (Optional) Modal labels (title, confirmation, etc.). Default value = {}
+ * @param labels.header Modal header. Font awesome icon recommended.
  * @param labels.title Modal title
  * @param labels.confirmation Modal confirmation message
  * @param labels.close Modal close label
@@ -18,19 +22,18 @@ const PrepareDeleteModal = (onClose, onDelete, isVisible, labels = {}) => {
       className={'modal-confirmation'}
       onClose={onClose}
       header={{
-        content: (<div className={'modal-header-icon'}><i className="fal fa-times-circle">
-        </i></div>)
+        content: ( labels.header || <div className={'modal-header-icon'}><FontAwesomeIcon icon={faTimesCircle} /></div>)
       }}
-      title={{ content: (labels ? labels.title : 'Deleting') }}
-      body={{ content: (<p>{labels ? labels.confirmation : 'Are you sure you want to delete this item?'}</p>) }}
+      title={{ content: (labels.title || 'Deleting') }}
+      body={{ content: (<p>{labels.confirmation || 'Are you sure you want to delete this item?'}</p>) }}
       footer={{
         content: (
           <React.Fragment>
             <button type='button' className='btn btn-secondary' onClick={onClose}>
-              {labels ? labels.close : 'Close'}
+              {labels.close || 'Close'}
             </button>
             <button type='button' className='btn btn-danger' onClick={onDelete}>
-              {labels ? labels.delete : 'Delete'}
+              {labels.delete || 'Delete'}
             </button>
           </React.Fragment>
         )
@@ -46,7 +49,8 @@ const PrepareDeleteModal = (onClose, onDelete, isVisible, labels = {}) => {
  * @param {(event: React.MouseEvent<HTMLButtonElement>) => void} callbacks.onRestore Event that triggers when user clicks "Restore" button
  * @param {boolean} isVisible Is modal active?
  * @param {string} action Name of api action that will be executed on confirmation('delete' - for actionDelete(), 'restore' - for actionRestore())
- * @param labels Modal labels (title, confirmation, etc.)
+ * @param labels (Optional) Modal labels (title, confirmation, etc.). Default value = {}
+ * @param labels.header Modal header. Font awesome icon recommended
  * @param labels.title Modal title
  * @param labels.confirmation Modal confirmation message for 'delete' action
  * @param labels.confirmation_restore Modal confirmation message for 'restore' action
@@ -54,7 +58,7 @@ const PrepareDeleteModal = (onClose, onDelete, isVisible, labels = {}) => {
  * @param labels.delete Modal delete label
  * @param labels.restore Modal restore label
  */
-const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
+const PrepareIndexModal = (callbacks, isVisible,action, labels= {}) => {
   let onClose = callbacks.onClose
   let onDelete = callbacks.onDelete
   let onRestore = callbacks.onRestore
@@ -68,10 +72,9 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
         content: (
           <div className={'modal-header-icon'}>
             {
-              action === 'delete' ? <i className="fal fa-times-circle">
-                </i> :
-                <i className="fal fa-sync">
-                </i>
+              action === 'delete' ?
+                labels.header || <FontAwesomeIcon icon={faTimesCircle} /> :
+                labels.header || <FontAwesomeIcon icon={faSync} />
             }
           </div>
         )
@@ -79,8 +82,8 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
       title={{
         content: (
           action === 'delete' ?
-            labels ? labels.title : 'Deleting' :
-            labels ? labels.title : 'Restoring'
+            labels.title || 'Deleting' :
+            labels.title || 'Restoring'
         )
       }}
       body={{
@@ -88,8 +91,8 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
           <p>
             {
               action === 'delete' ?
-                labels ? labels.confirmation : 'Are you sure you want to delete this item?' :
-                labels ? labels.confirmation_restore : 'Are you sure you want to restore this item?'
+                labels.confirmation || 'Are you sure you want to delete this item?' :
+                labels.confirmation_restore || 'Are you sure you want to restore this item?'
             }
           </p>
         )
@@ -98,17 +101,17 @@ const PrepareIndexModal = (callbacks, isVisible,action, labels = {}) => {
         content: (
           <React.Fragment>
             <button type='button' className='btn btn-secondary' onClick={onClose}>
-              {labels ? labels.close : 'Close'}
+              {labels.close || 'Close'}
             </button>
             {
               action === 'delete' ?
                 <button type='button' className='btn btn-danger' onClick={onDelete}>
-                  {labels ? labels.delete : 'Delete'}
+                  {labels.delete || 'Delete'}
                 </button>
                 :
                 <button type='button' className='btn btn-danger'
                         onClick={onRestore}>
-                  {labels ? labels.restore : 'Restore'}
+                  {labels.restore || 'Restore'}
                 </button>
             }
           </React.Fragment>
