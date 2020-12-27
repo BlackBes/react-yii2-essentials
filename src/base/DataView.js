@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Pagination} from "react-yii2-essentials";
+import {Pagination} from '../navigation/Pagination';
 import {Link} from "react-router-dom";
 import { faPencilAlt, faSearch, faSyncAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
