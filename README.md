@@ -1,4 +1,4 @@
-## ATTENTION: Library is currently in development. We are looking for maintainers
+##№ ATTENTION: Library is currently in development. We are looking for maintainers
 
 ### react-yii2-essentials
 
@@ -38,6 +38,7 @@ This function uses Redux to define your web server address and uses bearer token
 
 It will send a request to
 So in order to make function work correctly, you must add a reducer called `api.js` with properties listed below:
+
 ```js
  authToken: '', //here will be your bearer token
  address: '', //here you specify your web server url
@@ -61,7 +62,9 @@ await axios({
     }
 })
 ```
-### Components List
+
+Components List
+---------------
 
 ### Input field
 Generates input field with validation
@@ -372,7 +375,7 @@ Redirects to /login on fail
 ```
 
 Preloaders
----
+----------
 ### DataLoader
 Preloader adds spinning circle
 ```jsx
