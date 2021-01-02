@@ -1,12 +1,12 @@
 ## ATTENTION: Library is currently in development. We are looking for maintainers
 
-# react-yii2-essentials
+### react-yii2-essentials
 
 > React components, that support working with Yii2.
 
 [![NPM](https://img.shields.io/npm/v/react-yii2-essentials.svg)](https://www.npmjs.com/package/react-yii2-essentials) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)  [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FBlackBes%2Freact-yii2-essentials&count_bg=%2379C83D&title_bg=%23555555&icon=react.svg&icon_color=%2361DBFB&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-##Install
+### Install
 First of all be sure that you have Redux installed
 
 ```bash
@@ -29,7 +29,7 @@ It provides React CRUD generator for gii that can generate required controllers 
 composer require blackbes/yii2-yiireact
 ```
 
-##Usage
+### Usage
 This library provides you with components that are able to perform yii2 validation and fetch data from
 your Yii2 server.
 
@@ -61,9 +61,9 @@ await axios({
     }
 })
 ```
-## Components List
+### Components List
 
-###Input field
+### Input field
 Generates input field with validation
 
 ```jsx
@@ -95,7 +95,7 @@ Generates input field with validation
   }
 ```
 
-###Text area
+### Text area
 Generates text area with validation
 
 ```jsx
@@ -125,7 +125,7 @@ propTypes = {
   }
 ```
 
-####Radiobutton
+### Radiobutton
 Generates radiobutton or radiobutton list depending on the amount of keys
 
 ```jsx
@@ -156,7 +156,7 @@ propTypes = {
   }
 ```
 
-####Checkbox
+### Checkbox
 Generates Checkbox or Checkbox list depending on the amount of keys
 
 ```jsx
@@ -184,7 +184,7 @@ propTypes = {
   }
 ```
 
-####Dropdown list
+### Dropdown list
 Generates dropdown list with verification
 
 ```jsx
@@ -217,7 +217,7 @@ propTypes = {
     pluginProps: PropTypes.object
   }
 ```
-####BreadCrumbs
+### BreadCrumbs
 Generates breadcrumbs
 
 To use this, you must add `breadcrumbs.js` reducer with following code:
@@ -271,7 +271,7 @@ let bread = [
 <BreadCrumbs breadcrumbs={bread} />
 ```
 
-####DataProvider
+### DataProvider
 Component for generating and rendering index data. Analogue to yii2's DataProvider
 ```jsx
 
@@ -329,7 +329,7 @@ propTypes = {
 
 ```
 
-####Pagination
+### Pagination
 Setups pagination
 
 ```jsx
@@ -350,7 +350,7 @@ function actionPagination(page) {
     callback={actionPagination}
 />
 ```
-####PrivateRoute
+### PrivateRoute
 Allows to access routes by user with valid auth token.
 Redirects to /login on fail
 ```jsx
@@ -360,7 +360,7 @@ Redirects to /login on fail
 
 ```
 
-####AuthTypeRoute
+### AuthTypeRoute
  Modified version of PrivateRoute
  Allows to access routes by user with one or multiple auth types and valid auth token
  Redirects to /login on fail
@@ -373,7 +373,7 @@ Redirects to /login on fail
 
 Preloaders
 ---
-####DataLoader
+### DataLoader
 Preloader adds spinning circle
 ```jsx
 if (this.state.isDataLoaded){
@@ -386,7 +386,7 @@ if (this.state.isDataLoaded){
 );
 }
 ```
-####IndexDataLoader
+### IndexDataLoader
 Preloader creates view of unloaded fields
 ```jsx
 if (this.state.isDataLoaded){
@@ -399,7 +399,7 @@ if (this.state.isDataLoaded){
     );
 }
 ```
-####TableLoader
+### TableLoader
 Preloader creates view of unloaded table on index page
 ```jsx
 if (this.state.isDataLoaded){
@@ -413,11 +413,11 @@ if (this.state.isDataLoaded){
 }
 ```
 
-## Contributing
+### Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+### License
 
 MIT © [BlackBes](https://github.com/BlackBes)
