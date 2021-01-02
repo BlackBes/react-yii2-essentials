@@ -4,7 +4,7 @@
 
 > React components, that support working with Yii2.
 
-[![NPM](https://img.shields.io/npm/v/react-yii2-essentials.svg)](https://www.npmjs.com/package/react-yii2-essentials) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-yii2-essentials.svg)](https://www.npmjs.com/package/react-yii2-essentials) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)  [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FBlackBes%2Freact-yii2-essentials&count_bg=%2379C83D&title_bg=%23555555&icon=react.svg&icon_color=%2361DBFB&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ##Install
 First of all be sure that you have Redux installed
