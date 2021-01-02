@@ -23,7 +23,7 @@ After installing Redux run this command
 npm install --save react-yii2-essentials
 ```
 
-We recommend installing `blackbes/yii2-yiireact` on your web server in order to simplify usage of this package
+We recommend installing React library `blackbes/yii2-yiireact` [YiiReact GitHub Page](https://github.com/BlackBes/yii2-yiireact) on your web server in order to simplify usage of this package
 It provides React CRUD generator for gii that can generate required controllers and react pages for models.
 ```bash
 composer require blackbes/yii2-yiireact
