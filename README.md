@@ -5,7 +5,7 @@
 
 > React components, that support working with Yii2.
 
-[![NPM](https://img.shields.io/npm/v/react-yii2-essentials.svg)](https://www.npmjs.com/package/react-yii2-essentials) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-yii2-essentials.svg)](https://www.npmjs.com/package/react-yii2-essentials) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FBlackBes%2Freact-yii2-essentials&count_bg=%2379C83D&title_bg=%23555555&icon=react.svg&icon_color=%2361DBFB&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ## Install
 
@@ -26,7 +26,7 @@ npm install --save-dev redux-devtools
 
 ## Components List
 ###Input field
-Generates input field with validation       
+Generates input field with validation
 
 ```jsx
 <InputField />
@@ -51,7 +51,7 @@ props:
 ```
 
 ###Text area
-Generates text area with validation       
+Generates text area with validation
 
 ```jsx
 <TextArea />
@@ -76,7 +76,7 @@ props:
 ```
 
 ####Radiobutton
-Generates radiobutton or radiobutton list depending on the amount of keys       
+Generates radiobutton or radiobutton list depending on the amount of keys
 
 ```jsx
 <RadioButton />
@@ -98,7 +98,7 @@ props:
 ```
 
 ####Checkbox
-Generates Checkbox or Checkbox list depending on the amount of keys       
+Generates Checkbox or Checkbox list depending on the amount of keys
 
 ```jsx
 <CheckBox />
@@ -169,7 +169,7 @@ let bread = [
         name: "Create",
         link: ''
     },
-]; 
+];
 <BreadCrumbs breadcrumbs={bread} />
 ```
 
@@ -177,7 +177,7 @@ let bread = [
 Gets data for the index page table
 
 ```jsx
-<DataProvider 
+<DataProvider
 props:
     api.address,
     api.authToken,
@@ -208,7 +208,7 @@ Preloader adds spinning circle
 if (this.state.isDataLoaded){
     return render(
         //...
-        )       
+        )
 } else {
     return render(
          <DataLoader />
@@ -221,7 +221,7 @@ Preloader creates view of unloaded fields
 if (this.state.isDataLoaded){
     return render(
         //...
-        )       
+        )
 } else {
     return render(
     <IndexDataLoader />
@@ -234,7 +234,7 @@ Preloader creates view of unloaded table on index page
 if (this.state.isDataLoaded){
     return render(
         //...
-        )       
+        )
 } else {
     return render(
     <TableLoader />
