@@ -1,4 +1,4 @@
-##№ ATTENTION: Library is currently in development. We are looking for maintainers
+### ATTENTION: Library is currently in development. We are looking for maintainers
 
 ### react-yii2-essentials
 
